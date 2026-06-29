@@ -501,7 +501,7 @@
    ============================================================= */
 const CONFIG = {
   // Tu número de WhatsApp con código de país, sin + ni espacios
-  whatsappNumber: "51999999999",
+  whatsappNumber: "51935044834",
 
   // Mensaje del botón flotante y el footer (cuando no hay un producto elegido)
   whatsappMsgGeneral: "Hola, quisiera consultar sobre sus mochilas 🎒",
@@ -1013,11 +1013,7 @@ setGeneralWaLinks();
 
 /* Carga desde Sheets (si hay URL) o usa demo y renderiza */
 if (CONFIG.appsScriptUrl) {
-  // Muestra las pills y grid con los datos de demo MIENTRAS carga Sheets
-  // para que la página no quede en blanco
-  renderPills();
-  renderGrid();
-  cargarDesdeSheets(); // luego reemplaza con los datos reales
+  cargarDesdeSheets();
 } else {
   renderPills();
   renderGrid();
