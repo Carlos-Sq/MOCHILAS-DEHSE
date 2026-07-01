@@ -129,6 +129,61 @@
   @media(max-width:900px){.nav-social{display:none;}}
   @media(max-width:760px){nav{display:none;}.header-inner{padding:12px 18px;}}
 
+  /* ---------- MENÚ MÓVIL (hamburguesa) ---------- */
+  .hamburger{
+    display:none;align-items:center;justify-content:center;
+    width:42px;height:42px;border-radius:12px;border:1px solid var(--line);
+    background:var(--paper-warm);flex-shrink:0;position:relative;z-index:60;
+  }
+  .hamburger span{
+    display:block;width:20px;height:2px;background:var(--ink);border-radius:2px;
+    position:relative;transition:transform .2s ease, opacity .2s ease, background .2s ease;
+  }
+  .hamburger span::before,.hamburger span::after{
+    content:'';position:absolute;left:0;width:20px;height:2px;background:var(--ink);
+    border-radius:2px;transition:transform .2s ease, top .2s ease;
+  }
+  .hamburger span::before{top:-6px;}
+  .hamburger span::after{top:6px;}
+  .hamburger.open span{background:transparent;}
+  .hamburger.open span::before{top:0;transform:rotate(45deg);}
+  .hamburger.open span::after{top:0;transform:rotate(-45deg);}
+  @media(max-width:760px){.hamburger{display:flex;}}
+
+  .mobile-menu{
+    display:none;flex-direction:column;gap:2px;
+    position:fixed;top:0;left:0;right:0;bottom:0;z-index:55;
+    background:rgba(24,22,20,0.45);backdrop-filter:blur(2px);
+    opacity:0;pointer-events:none;transition:opacity .25s ease;
+  }
+  .mobile-menu.open{opacity:1;pointer-events:auto;}
+  @media(max-width:760px){.mobile-menu{display:flex;}}
+  .mobile-menu-panel{
+    margin-top:64px;background:var(--paper,#fffdfb);
+    border-bottom:1px solid var(--line-strong);
+    box-shadow:0 20px 40px -12px rgba(24,22,20,0.25);
+    padding:18px 22px 26px;display:flex;flex-direction:column;gap:4px;
+    transform:translateY(-12px);transition:transform .25s var(--ease-out);
+  }
+  .mobile-menu.open .mobile-menu-panel{transform:translateY(0);}
+  .mobile-menu-panel a{
+    padding:13px 4px;font-weight:600;font-size:16px;color:var(--ink-soft);
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-menu-panel a:hover{color:var(--red);}
+  .mobile-menu-cta{
+    margin-top:14px;background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);
+    color:#fff !important;text-align:center;padding:13px 20px !important;border-radius:999px;
+    border-bottom:none !important;font-weight:700;
+  }
+  .mobile-menu-social{display:flex;align-items:center;gap:14px;margin-top:18px;}
+  .mobile-menu-social a{
+    display:flex;align-items:center;justify-content:center;
+    width:40px;height:40px;border-radius:50%;padding:0;border:1px solid var(--line);
+    color:var(--ink-soft);background:var(--paper-warm);
+  }
+  .mobile-menu-social svg{width:18px;height:18px;}
+
   /* ---------- HERO ---------- */
   .hero{
     position:relative;overflow:hidden;
@@ -492,7 +547,7 @@
     font-family:'JetBrains Mono',monospace;color:var(--red);
     font-size:26px;font-weight:700;
   }
-  .detail-desc{color:var(--gray);font-size:15px;line-height:1.65;margin:0;}
+  .detail-desc{color:var(--gray);font-size:15px;line-height:1.65;margin:0;white-space:pre-line;}
   .field-label{
     font-size:12px;font-weight:700;letter-spacing:0.06em;
     text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px;
@@ -691,8 +746,32 @@
       Ver productos
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span>
+    </button>
   </div>
 </header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-panel">
+    <a href="#nosotros">Nosotros</a>
+    <a href="#como-comprar">Cómo comprar</a>
+    <a href="#catalogo">Productos</a>
+    <a href="#contacto">Contacto</a>
+    <a class="mobile-menu-cta" href="#catalogo">Ver productos</a>
+    <div class="mobile-menu-social">
+      <a href="#" target="_blank" rel="noopener" aria-label="Facebook de DEHSE">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.45 2.91h-2.33V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" aria-label="Instagram de DEHSE">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" aria-label="TikTok de DEHSE">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2c.3 2.1 1.6 3.7 3.7 4v3.1c-1.3.1-2.6-.3-3.7-1v6.4c0 3.6-2.9 6.5-6.5 6.5S3.5 18.1 3.5 14.5c0-3.5 2.8-6.4 6.2-6.5v3.3c-1.6.1-2.9 1.4-2.9 3.1 0 1.7 1.4 3.1 3.1 3.1s3.1-1.4 3.1-3.1V2h3.5Z"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- ============================= HERO ============================= -->
 <section class="hero" id="top">
@@ -820,6 +899,37 @@
 
 <!-- ============================= SCRIPTS ============================= -->
 <script>
+/* =============================================================
+   MENÚ MÓVIL
+   ============================================================= */
+(function(){
+  const btn = document.getElementById('hamburgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  if(!btn || !menu) return;
+
+  function openMenu(){
+    menu.classList.add('open');
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu(){
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  btn.addEventListener('click', () => {
+    menu.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  // Cerrar al hacer click en un link del menú
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  // Cerrar al hacer click fuera del panel (en el overlay)
+  menu.addEventListener('click', (e) => { if(e.target === menu) closeMenu(); });
+  // Cerrar si la ventana crece a escritorio
+  window.addEventListener('resize', () => { if(window.innerWidth > 760) closeMenu(); });
+})();
+
 /* =============================================================
    CONFIGURACIÓN — edita solo estos valores
    ============================================================= */
