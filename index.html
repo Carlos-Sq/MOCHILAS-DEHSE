@@ -193,9 +193,17 @@
     display:flex;align-items:center;
   }
   @media(max-width:760px){
-    .hero{aspect-ratio:auto;min-height:560px;}
-    .hero-shape{background-size:cover !important;background-position:center 25%;}
-    .hero-inner{padding:36px 20px 48px;max-width:320px;}
+    .hero{aspect-ratio:auto;align-items:flex-start;}
+    .hero-shape{
+      background-size:contain !important;
+      background-position:top center !important;
+      background-repeat:no-repeat !important;
+      background-color:var(--red);
+    }
+    .hero-inner{
+      padding:calc(42.7vw + 28px) 20px 44px;
+      max-width:320px;
+    }
     .hero h1{font-size:19px;line-height:1.25;}
     .hero p{font-size:12px;margin-top:12px;}
     .eyebrow{padding:6px 12px;font-size:10px;margin-bottom:14px;}
